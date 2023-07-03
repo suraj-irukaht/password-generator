@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Password Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="app.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="card">
+            <div class="js-password">hfaEfn$5% <i class="ri-file-copy-line js-copy"></i></div>
+            <form action="#">
+                <div class="fields">
+                    <label for="password-length">
+                        <span>Password length</span>
+                        <div class="range-wrap">
+                            <input type="range" class="input" id="password-length" max="20" min="6" value="6">
+                            <span class="js-range-value"></span>
+                        </div>
+                    </label>
+                    <label for="upper-char">
+                        <span>Include uppercase letters</span>
+                        <input type="checkbox" id="upper-char">
+
+                    </label>
+                    <label for="lower-char">
+                        <span>Include lowercase letters</span>
+                        <input type="checkbox" id="lower-char">
+
+                    </label>
+                    <label for="number">
+                        <span>Include numbers</span>
+                        <input type="checkbox" id="number">
+
+                    </label>
+                    <label for="symbol">
+                        <span>Include symbols</span>
+                        <input type="checkbox" id="symbol">
+
+                    </label>
+                </div>
+                <button type="submit">Generate <i class="ri-arrow-right-s-line"></i></button>
+            </form>
+        </div>
+        <div class="card simple" style="display: none;">
+            <div class="js-password">hfaEfn$5% <i class="ri-file-copy-line js-copy"></i></div>
+            <form action="#">
+                <button type="submit">Generate <i class="ri-arrow-right-s-line"></i></button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
