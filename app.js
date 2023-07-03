@@ -4,8 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const initPasswordGenerator = () => {
    const form = document.querySelector('form'),
+      passwordWrap = document.querySelector('.password-wrap'),
       passwordLength = document.querySelector('#password-length'),
-      rangeValue = document.querySelector('.js-range-value');
+      rangeValue = document.querySelector('.js-range-value'),
+      copyPassword = document.querySelector('.js-copy');
    //setting default value to range slider
    rangeValue.textContent = passwordLength.value;
    passwordLength.addEventListener('input', () => {
@@ -39,6 +41,16 @@ const initPasswordGenerator = () => {
          allCharacters += symbols;
       }
 
+      if (
+         upperInput.checked === false &&
+         lowerInput.checked === false &&
+         numberInput.checked === false &&
+         symbolInput.checked === false
+      ) {
+         alert('Please choose one option');
+         copyPassword.style.display = 'none';
+      }
+
       if (allCharacters == '' || allCharacters.length == 0) {
          return result;
       }
@@ -49,12 +61,34 @@ const initPasswordGenerator = () => {
          );
       }
 
+      copyPassword.style.display = 'block';
       return result;
    }
 
    form.addEventListener('submit', (e) => {
       e.preventDefault();
       const passwordContainer = document.querySelector('.js-password');
-      passwordContainer.innerHTML = generatePassword();
+      passwordContainer.value = generatePassword();
    });
+
+   // copy to clipboard js
+   function copyPasswordText(e) {
+      let item = e.target;
+      item.classList.remove('ri-file-copy-line');
+      item.classList.add('ri-check-fill');
+      document.querySelector('.js-text-copied').style.display = 'block';
+
+      setTimeout(() => {
+         item.classList.add('ri-file-copy-line');
+         item.classList.remove('ri-check-fill');
+         document.querySelector('.js-text-copied').style.display = 'none';
+      }, 2000);
+
+      const element = document.querySelector('.js-password');
+      element.select();
+      element.setSelectionRange(0, 99999);
+      document.execCommand('copy');
+   }
+
+   copyPassword.addEventListener('click', copyPasswordText);
 };
